@@ -1,0 +1,16 @@
+#calculator-buttons{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+}
+
+button{
+    width: 80px;
+    height: 80px;
+}
+
+span{
+    font-size: 60px;
+}
