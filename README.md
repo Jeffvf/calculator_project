@@ -1,0 +1,1 @@
+This project contains a on-screen calculator using Javascript, HTML and CSS for it's operations.
