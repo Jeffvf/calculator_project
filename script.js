@@ -28,12 +28,32 @@ const operate = (operator, a, b) => {
     }
 };
 
-let operator, num;
+let operator = "";
+const array = []
 
 function populateDisplay(e){
     const spn = document.querySelector("#display");
 
-    spn.textContent += e.srcElement.innerHTML;
+    if(e.srcElement.value == 'operator'){
+        operator = e.srcElement.name;
+        array[array.length] = spn.textContent;
+        spn.textContent = '';
+    }
+    else if(e.srcElement.value == "equals"){
+        array[array.length] = spn.textContent;
+        console.log(array[0], array[1], operator);
+        if(array.length == 2 && operator){
+            let result = operate(operator, parseFloat(array[0]), parseFloat(array[1]));
+            spn.textContent = result
+            
+            operator = "";
+            array.length = 0;
+        }
+    }
+    else{
+        spn.textContent += e.srcElement.innerHTML;
+    }
+
 }
 
 const buttons = document.querySelectorAll("button");
