@@ -27,3 +27,15 @@ const operate = (operator, a, b) => {
         return 'Invalid operator'
     }
 };
+
+let operator, num;
+
+function populateDisplay(e){
+    const spn = document.querySelector("#display");
+
+    spn.textContent += e.srcElement.innerHTML;
+}
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => button.addEventListener('click', populateDisplay));
