@@ -34,7 +34,15 @@ const array = []
 function populateDisplay(e){
     const spn = document.querySelector("#display");
 
-    if(e.srcElement.value == 'operator'){
+    if(e.srcElement.value == 'Clear'){
+        operator = "";
+        array.length = 0;
+        spn.textContent = '';
+    }
+    else if(e.srcElement.value == 'Delete' && spn.textContent){
+        spn.textContent = spn.textContent.slice(0, -1);
+    }
+    else if(e.srcElement.value == 'operator'){
         operator = e.srcElement.name;
         array[array.length] = spn.textContent;
         spn.textContent = '';

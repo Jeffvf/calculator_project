@@ -14,3 +14,8 @@ button{
 span{
     font-size: 60px;
 }
+
+.undo-button {
+    width: 165px;
+    height: 80px;
+}
