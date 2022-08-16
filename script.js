@@ -4,7 +4,7 @@ const subtract = (a,b) => a - b;
 
 const multiply = (a,b) => a * b;
 
-const divide = (a,b) => a / b;
+const divide = (a,b) => b != 0 ? a / b : "Error! Can't divide by zero";
 
 const operate = (operator, a, b) => {
     if(operator == '+'){
@@ -24,7 +24,7 @@ const operate = (operator, a, b) => {
     }
 
     else{
-        return 'Invalid operator'
+        return 'Invalid operator';
     }
 };
 
@@ -50,9 +50,10 @@ function populateDisplay(e){
     else if(e.srcElement.value == "equals"){
         array[array.length] = spn.textContent;
         console.log(array[0], array[1], operator);
+
         if(array.length == 2 && operator){
             let result = operate(operator, parseFloat(array[0]), parseFloat(array[1]));
-            spn.textContent = result
+            spn.textContent = result;
             
             operator = "";
             array.length = 0;
