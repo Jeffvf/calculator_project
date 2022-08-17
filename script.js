@@ -29,14 +29,18 @@ const operate = (operator, a, b) => {
 };
 
 let operator = "";
-const array = []
+const array = [];
+
+function resetVariables(){
+    operator = "";
+    array.length = 0;
+}
 
 function populateDisplay(e){
     const spn = document.querySelector("#display");
 
     if(e.srcElement.value == 'Clear'){
-        operator = "";
-        array.length = 0;
+        resetVariables();
         spn.textContent = '';
     }
     else if(e.srcElement.value == 'Delete' && spn.textContent){
@@ -55,8 +59,7 @@ function populateDisplay(e){
             let result = operate(operator, parseFloat(array[0]), parseFloat(array[1]));
             spn.textContent = result;
             
-            operator = "";
-            array.length = 0;
+            resetVariables();
         }
     }
     else{
