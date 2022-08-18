@@ -28,12 +28,14 @@ const operate = (operator, a, b) => {
     }
 };
 
-let operator = [];
+const operator = [];
 const array = [];
+let dotCounter = 0;
 
 function resetVariables(){
     operator.length = 0;
     array.length = 0;
+    dotCounter = 0;
 }
 
 function populateDisplay(e){
@@ -54,17 +56,24 @@ function populateDisplay(e){
             array[array.length] = spn.textContent;
         }
         spn.textContent = '';
-        console.log(operator);
+        dotCounter = 0;
     }
     else if(e.srcElement.value == "equals"){
         array[array.length] = spn.textContent;
-        console.log(array[0], array[1], operator[0]);
 
-        if(array.length == 2 && operator.length){
+        if(array.length == 2 && operator.length && spn.textContent != ''){
             let result = operate(operator.shift(), parseFloat(array[0]), parseFloat(array[1]));
             total.textContent = result;
             
-            resetVariables();
+            array.length = 0;
+            array[0] = result;
+        }
+        spn.textContent = '';
+    }
+    else if(e.srcElement.value == "dot"){
+        if(!dotCounter){
+            spn.textContent += e.srcElement.innerHTML;
+            dotCounter++;
         }
     }
     else{
