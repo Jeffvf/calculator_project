@@ -28,42 +28,55 @@ const operate = (operator, a, b) => {
     }
 };
 
-let operator = "";
+let operator = [];
 const array = [];
 
 function resetVariables(){
-    operator = "";
+    operator.length = 0;
     array.length = 0;
 }
 
 function populateDisplay(e){
     const spn = document.querySelector("#display");
+    const total = document.querySelector("#total");
 
     if(e.srcElement.value == 'Clear'){
         resetVariables();
         spn.textContent = '';
+        total.textContent = '';
     }
     else if(e.srcElement.value == 'Delete' && spn.textContent){
         spn.textContent = spn.textContent.slice(0, -1);
     }
     else if(e.srcElement.value == 'operator'){
-        operator = e.srcElement.name;
-        array[array.length] = spn.textContent;
+        if(spn.textContent != ''){
+            operator[operator.length] = e.srcElement.name;
+            array[array.length] = spn.textContent;
+        }
         spn.textContent = '';
+        console.log(operator);
     }
     else if(e.srcElement.value == "equals"){
         array[array.length] = spn.textContent;
-        console.log(array[0], array[1], operator);
+        console.log(array[0], array[1], operator[0]);
 
-        if(array.length == 2 && operator){
-            let result = operate(operator, parseFloat(array[0]), parseFloat(array[1]));
-            spn.textContent = result;
+        if(array.length == 2 && operator.length){
+            let result = operate(operator.shift(), parseFloat(array[0]), parseFloat(array[1]));
+            total.textContent = result;
             
             resetVariables();
         }
     }
     else{
         spn.textContent += e.srcElement.innerHTML;
+    }
+
+    if(array.length == 2 && operator.length){
+        let result = operate(operator.shift(), parseFloat(array[0]), parseFloat(array[1]));
+        total.textContent = result;
+
+        array.length = 0;
+        array[0] = result;
     }
 
 }
